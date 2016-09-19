@@ -34,16 +34,6 @@ class PingDaemon(Daemon):
             except IndexError:
                 msg += 'Host ' + self.params['host'] + ' not available'
             self.logging(msg)
-            # logfile = self.params['logfile']
-            # try:
-            #     logfile = open(logfile, 'a')
-            # except FileNotFoundError:
-            #     print('ERROR: Can\'t open logfile\n')
-            #     sys.exit(1)
-            # logfile.write(msg + '\n')
-            # logfile.close()
-            # print(msg)
-            # Calculate time to next run, i love cron :)
             sleeptime = self.nexttime(self.timenow(), self.params['interval']) - self.timenow()
             time.sleep(sleeptime)
 
@@ -62,7 +52,6 @@ class PingDaemon(Daemon):
         res = proc.stdout.read()
         # proc.kill()
         return res.decode()
-        # return 1
 
     def matchres(self, str):
         ''' function like grep '''
@@ -74,6 +63,7 @@ class PingDaemon(Daemon):
         return res
 
     def logging(self, msg):
+        '''Logging Methid'''
         try:
             logfile = open(self.params['logfile'], 'a')
         except FileNotFoundError:
