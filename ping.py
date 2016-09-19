@@ -27,14 +27,14 @@ class PingDaemon(Daemon):
             res = self.matchres(ping)
             msg = str(int(self.timenow())) + ': '
             try:
-                if float(res[2]) < self.params['critical']:
-                    msg += 'Host ' + self.params['host'] + ' OK'
+                if float(res[2]) < params['critical']:
+                    msg += 'Host ' + params['host'] + ' OK'
                 else:
-                    msg += 'Host ' + self.params['host'] + ' too slow (ping is: ' + res[2] + ' ms)'
+                    msg += 'Host ' + params['host'] + ' too slow (ping is: ' + res[2] + ' ms)'
             except IndexError:
-                msg += 'Host ' + self.params['host'] + ' not available'
+                msg += 'Host ' + params['host'] + ' not available'
             self.logging(msg)
-            sleeptime = self.nexttime(self.timenow(), self.params['interval']) - self.timenow()
+            sleeptime = self.nexttime(self.timenow(), params['interval']) - self.timenow()
             time.sleep(sleeptime)
 
     def timenow(self):
