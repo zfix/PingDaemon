@@ -44,7 +44,7 @@ class PingDaemon(Daemon):
 
     def nexttime(self, timestamp, interval):
         ''' Return time to next run '''
-        return ((timestamp + interval) // interval) * interval
+        return (timestamp // interval + 1) * interval
 
     def pingcheck(self, cmd):
         ''' Run ping subprocess '''
