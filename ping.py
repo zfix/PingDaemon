@@ -43,7 +43,7 @@ class PingDaemon(Daemon):
         return datenow.timestamp()
 
     def nexttime(self, timestamp, interval):
-        ''' Return time to next run '''
+        ''' Return time when will next run '''
         return (timestamp // interval + 1) * interval
 
     def pingcheck(self, cmd):
